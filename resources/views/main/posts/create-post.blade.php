@@ -8,6 +8,7 @@
 
         <form class="m-1 p-1" action="{{ route('posts.store') }}" method="POST">
             @csrf
+            <input type="hidden" name="redirect_to" value="{{ url()->previous() }}">
             <div class="title">
                 <label for="title" class="form-label">Article Title</label>
                 <input type="text" name="title" value="{{ old('title') }}" id="title" class="form-control"
@@ -51,7 +52,7 @@
 
             <div class="d-flex justify-content-center align-items-center mt-4 gap-3">
                 <button type="submit" class="btn btn-primary">Create</button>
-                <a href="profile.html" class="btn btn-danger">Cancel</a>
+                <a href="{{ old('redirect_to', url()->previous()) }}" class="btn btn-danger">Cancel</a>
             </div>
         </form>
     </div>
